@@ -1,13 +1,13 @@
-import { prisma } from '../config/database';
+import { prisma } from '../../config/database';
 import { 
   getPaginationOptions, 
   createPaginatedResult 
-} from '../utils/helpers';
+} from '../../utils/helpers';
 import type { 
   CreateCommentInput, 
   CommentFilters,
   PaginationOptions 
-} from '../types';
+} from '../../types';
 
 export class CommentService {
   async createComment(authorId: string, data: CreateCommentInput) {

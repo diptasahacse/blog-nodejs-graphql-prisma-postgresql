@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { BlogController } from '../controllers/blog.controller';
-import { authenticateToken, optionalAuth } from '../middleware/auth';
+import { BlogController } from './blog.controller';
+import { authenticateToken, optionalAuth } from '../../middleware/auth';
 
 const router = Router();
 const blogController = new BlogController();

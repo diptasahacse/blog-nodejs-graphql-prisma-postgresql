@@ -1,6 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import { UserService } from '../services/user.service';
-import { createUserSchema, loginSchema, createProfileSchema, paginationSchema } from '../utils/validation';
+import { UserService } from './user.service';
+import { 
+  createUserSchema, 
+  loginSchema, 
+  createProfileSchema, 
+  paginationSchema 
+} from '../../utils/validation';
 
 const userService = new UserService();
 

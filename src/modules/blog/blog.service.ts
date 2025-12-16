@@ -1,17 +1,17 @@
 import { Prisma } from '@prisma/client';
-import { prisma } from '../config/database';
+import { prisma } from '../../config/database';
 import { 
   generateSlug,
   getPaginationOptions, 
   createPaginatedResult 
-} from '../utils/helpers';
+} from '../../utils/helpers';
 import type { 
   CreateBlogInput, 
   UpdateBlogInput, 
   BlogFilters,
   PaginationOptions, 
   PaginatedResult 
-} from '../types';
+} from '../../types';
 
 export class BlogService {
   async createBlog(authorId: string, data: CreateBlogInput) {

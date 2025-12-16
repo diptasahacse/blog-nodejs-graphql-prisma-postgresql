@@ -1,8 +1,9 @@
-import { prisma } from '../config/database';
-import { generateSlug } from '../utils/helpers';
+import { prisma } from '../../config/database';
+import { generateSlug } from '../../utils/helpers';
+import type { CreateCategoryInput, UpdateCategoryInput, CreateTagInput, UpdateTagInput } from '../../types';
 
 export class CategoryService {
-  async createCategory(data: { name: string; description?: string }) {
+  async createCategory(data: CreateCategoryInput) {
     const slug = generateSlug(data.name);
     
     // Ensure slug is unique
@@ -60,7 +61,7 @@ export class CategoryService {
     });
   }
 
-  async updateCategory(id: string, data: { name?: string; description?: string }) {
+  async updateCategory(id: string, data: UpdateCategoryInput) {
     let updateData = { ...data };
     
     if (data.name) {
@@ -73,7 +74,7 @@ export class CategoryService {
         finalSlug = `${slug}-${counter}`;
         counter++;
       }
-      updateData = { ...updateData, slug: finalSlug } as any;
+      updateData = { ...updateData, slug: finalSlug } as UpdateCategoryInput & { slug: string };
     }
 
     return prisma.category.update({
@@ -90,7 +91,7 @@ export class CategoryService {
 }
 
 export class TagService {
-  async createTag(data: { name: string }) {
+  async createTag(data: CreateTagInput) {
     const slug = generateSlug(data.name);
     
     // Ensure slug is unique
@@ -148,7 +149,7 @@ export class TagService {
     });
   }
 
-  async updateTag(id: string, data: { name?: string }) {
+  async updateTag(id: string, data: UpdateTagInput) {
     let updateData = { ...data };
     
     if (data.name) {
@@ -161,7 +162,7 @@ export class TagService {
         finalSlug = `${slug}-${counter}`;
         counter++;
       }
-      updateData = { ...updateData, slug: finalSlug } as any;
+      updateData = { ...updateData, slug: finalSlug } as UpdateTagInput & { slug: string };
     }
 
     return prisma.tag.update({

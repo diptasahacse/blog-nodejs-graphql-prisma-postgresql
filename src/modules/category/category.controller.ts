@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
-import { CategoryService, TagService } from '../services/category.service';
-import { createCategorySchema, createTagSchema } from '../utils/validation';
+import { CategoryService, TagService } from './category.service';
+import { createCategorySchema, createTagSchema } from '../../utils/validation';
 
 const categoryService = new CategoryService();
 const tagService = new TagService();
 
 export class CategoryController {
-  async createCategory(req: Request, res: Response, next: NextFunction) {
+  async createCategory(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const validatedData = createCategorySchema.parse(req.body);
       const category = await categoryService.createCategory(validatedData);
@@ -20,13 +20,14 @@ export class CategoryController {
     }
   }
 
-  async getCategoryById(req: Request, res: Response, next: NextFunction) {
+  async getCategoryById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id } = req.params;
       const category = await categoryService.getCategoryById(id);
       
       if (!category) {
-        return res.status(404).json({ error: 'Category not found' });
+        res.status(404).json({ error: 'Category not found' });
+        return;
       }
       
       res.json({
@@ -38,13 +39,14 @@ export class CategoryController {
     }
   }
 
-  async getCategoryBySlug(req: Request, res: Response, next: NextFunction) {
+  async getCategoryBySlug(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { slug } = req.params;
       const category = await categoryService.getCategoryBySlug(slug);
       
       if (!category) {
-        return res.status(404).json({ error: 'Category not found' });
+        res.status(404).json({ error: 'Category not found' });
+        return;
       }
       
       res.json({
@@ -56,7 +58,7 @@ export class CategoryController {
     }
   }
 
-  async getCategories(req: Request, res: Response, next: NextFunction) {
+  async getCategories(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const categories = await categoryService.getCategories();
       
@@ -69,7 +71,7 @@ export class CategoryController {
     }
   }
 
-  async updateCategory(req: Request, res: Response, next: NextFunction) {
+  async updateCategory(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id } = req.params;
       const validatedData = createCategorySchema.partial().parse(req.body);
@@ -85,7 +87,7 @@ export class CategoryController {
     }
   }
 
-  async deleteCategory(req: Request, res: Response, next: NextFunction) {
+  async deleteCategory(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id } = req.params;
       await categoryService.deleteCategory(id);
@@ -100,7 +102,7 @@ export class CategoryController {
 }
 
 export class TagController {
-  async createTag(req: Request, res: Response, next: NextFunction) {
+  async createTag(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const validatedData = createTagSchema.parse(req.body);
       const tag = await tagService.createTag(validatedData);
@@ -114,13 +116,14 @@ export class TagController {
     }
   }
 
-  async getTagById(req: Request, res: Response, next: NextFunction) {
+  async getTagById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id } = req.params;
       const tag = await tagService.getTagById(id);
       
       if (!tag) {
-        return res.status(404).json({ error: 'Tag not found' });
+        res.status(404).json({ error: 'Tag not found' });
+        return;
       }
       
       res.json({
@@ -132,13 +135,14 @@ export class TagController {
     }
   }
 
-  async getTagBySlug(req: Request, res: Response, next: NextFunction) {
+  async getTagBySlug(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { slug } = req.params;
       const tag = await tagService.getTagBySlug(slug);
       
       if (!tag) {
-        return res.status(404).json({ error: 'Tag not found' });
+        res.status(404).json({ error: 'Tag not found' });
+        return;
       }
       
       res.json({
@@ -150,7 +154,7 @@ export class TagController {
     }
   }
 
-  async getTags(req: Request, res: Response, next: NextFunction) {
+  async getTags(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const tags = await tagService.getTags();
       
@@ -163,7 +167,7 @@ export class TagController {
     }
   }
 
-  async updateTag(req: Request, res: Response, next: NextFunction) {
+  async updateTag(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id } = req.params;
       const validatedData = createTagSchema.partial().parse(req.body);
@@ -179,7 +183,7 @@ export class TagController {
     }
   }
 
-  async deleteTag(req: Request, res: Response, next: NextFunction) {
+  async deleteTag(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id } = req.params;
       await tagService.deleteTag(id);

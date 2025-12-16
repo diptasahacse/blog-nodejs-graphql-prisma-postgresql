@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import { BlogService } from '../services/blog.service';
+import { BlogService } from './blog.service';
 import { 
   createBlogSchema, 
   updateBlogSchema, 
   paginationSchema, 
   blogFiltersSchema 
-} from '../utils/validation';
+} from '../../utils/validation';
 
 const blogService = new BlogService();
 

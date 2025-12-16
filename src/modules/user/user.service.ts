@@ -1,19 +1,19 @@
 import { Prisma } from '@prisma/client';
-import { prisma } from '../config/database';
+import { prisma } from '../../config/database';
 import { 
   hashPassword, 
   comparePassword, 
   generateToken, 
   getPaginationOptions, 
   createPaginatedResult 
-} from '../utils/helpers';
+} from '../../utils/helpers';
 import type { 
   CreateUserInput, 
   CreateProfileInput, 
   PaginationOptions, 
   PaginatedResult,
   AuthPayload 
-} from '../types';
+} from '../../types';
 
 export class UserService {
   async createUser(data: CreateUserInput) {

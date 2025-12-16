@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { CommentService } from '../services/comment.service';
-import { createCommentSchema, paginationSchema } from '../utils/validation';
+import { CommentService } from './comment.service';
+import { createCommentSchema, paginationSchema } from '../../utils/validation';
 
 const commentService = new CommentService();
 

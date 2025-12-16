@@ -1,16 +1,16 @@
 import { Router } from 'express';
-import authRoutes from './auth.routes';
-import blogRoutes from './blog.routes';
-import commentRoutes from './comment.routes';
-import metadataRoutes from './metadata.routes';
+import { userRoutes } from '../modules/user';
+import { blogRoutes } from '../modules/blog';
+import { commentRoutes } from '../modules/comment';
+import { categoryRoutes } from '../modules/category';
 
 const router = Router();
 
 // API routes
-router.use('/auth', authRoutes);
+router.use('/auth', userRoutes);
 router.use('/blogs', blogRoutes);
 router.use('/comments', commentRoutes);
-router.use('/metadata', metadataRoutes);
+router.use('/categories', categoryRoutes);
 
 // Health check
 router.get('/health', (req, res) => {

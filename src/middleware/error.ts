@@ -1,7 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
 
+interface ErrorWithCode extends Error {
+  code?: string;
+  name: string;
+  issues?: Array<{ path: (string | number)[]; message: string }>;
+  status?: number;
+}
+
 export const errorHandler = (
-  error: any,
+  error: ErrorWithCode,
   req: Request,
   res: Response,
   next: NextFunction

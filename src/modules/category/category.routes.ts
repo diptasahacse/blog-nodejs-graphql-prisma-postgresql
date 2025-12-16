@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { CategoryController, TagController } from '../controllers/category.controller';
-import { authenticateToken } from '../middleware/auth';
+import { CategoryController, TagController } from './category.controller';
+import { authenticateToken } from '../../middleware/auth';
 
 const router = Router();
 const categoryController = new CategoryController();
