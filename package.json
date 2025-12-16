@@ -1,0 +1,56 @@
+{
+  "name": "blog-nodejs-graphql-prisma-postgresql",
+  "version": "1.0.0",
+  "description": "A comprehensive blog server with REST API and GraphQL using Node.js, PostgreSQL, and Prisma",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:reset": "prisma migrate reset",
+    "db:studio": "prisma studio",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blog",
+    "nodejs",
+    "graphql",
+    "rest-api",
+    "postgresql",
+    "prisma",
+    "typescript",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@apollo/server": "^5.2.0",
+    "@as-integrations/express5": "^1.1.2",
+    "@prisma/adapter-pg": "^7.1.0",
+    "@prisma/client": "^7.1.0",
+    "@types/pg": "^8.16.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "graphql": "^16.12.0",
+    "graphql-scalars": "^1.25.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.16.3",
+    "prisma": "^7.1.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.0.2"
+  }
+}
