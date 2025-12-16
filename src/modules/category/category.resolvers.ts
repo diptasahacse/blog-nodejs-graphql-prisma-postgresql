@@ -1,63 +1,24 @@
 import { CategoryService, TagService } from './category.service';
 import type { GraphQLContext } from '../../graphql/resolvers';
-import type { CreateCategoryInput, CreateTagInput } from '../../types';
+import type {
+  CreateCategoryInput,
+  CreateTagInput,
+  CategoryArgs,
+  CategoryBySlugArgs,
+  CreateCategoryArgs,
+  UpdateCategoryArgs,
+  DeleteCategoryArgs,
+  TagArgs,
+  TagBySlugArgs,
+  CreateTagArgs,
+  UpdateTagArgs,
+  DeleteTagArgs,
+  CategoryParent,
+  TagParent
+} from '../../types';
 
 const categoryService = new CategoryService();
 const tagService = new TagService();
-
-interface CategoryArgs {
-  id: string;
-}
-
-interface CategoryBySlugArgs {
-  slug: string;
-}
-
-interface CreateCategoryArgs {
-  input: CreateCategoryInput;
-}
-
-interface UpdateCategoryArgs {
-  id: string;
-  input: Partial<CreateCategoryInput>;
-}
-
-interface DeleteCategoryArgs {
-  id: string;
-}
-
-interface TagArgs {
-  id: string;
-}
-
-interface TagBySlugArgs {
-  slug: string;
-}
-
-interface CreateTagArgs {
-  input: CreateTagInput;
-}
-
-interface UpdateTagArgs {
-  id: string;
-  input: Partial<CreateTagInput>;
-}
-
-interface DeleteTagArgs {
-  id: string;
-}
-
-interface CategoryParent {
-  _count?: {
-    blogs?: number;
-  };
-}
-
-interface TagParent {
-  _count?: {
-    blogs?: number;
-  };
-}
 
 export const categoryResolvers = {
   Query: {

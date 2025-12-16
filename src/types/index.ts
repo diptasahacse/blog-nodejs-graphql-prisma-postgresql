@@ -214,6 +214,7 @@ export interface CreateCategoryArgs {
 }
 
 export interface UpdateCategoryArgs {
+  id: string;
   input: UpdateCategoryInput;
 }
 
@@ -226,11 +227,29 @@ export interface CreateTagArgs {
 }
 
 export interface UpdateTagArgs {
+  id: string;
   input: UpdateTagInput;
 }
 
 export interface DeleteTagArgs {
   id: string;
+}
+
+// Category resolver args
+export interface CategoryArgs {
+  id: string;
+}
+
+export interface CategoryBySlugArgs {
+  slug: string;
+}
+
+export interface TagArgs {
+  id: string;
+}
+
+export interface TagBySlugArgs {
+  slug: string;
 }
 
 // Parent types for field resolvers
@@ -262,5 +281,17 @@ export interface CommentParent {
   replies?: unknown[];
   _count?: {
     replies?: number;
+  };
+}
+
+export interface CategoryParent {
+  _count?: {
+    blogs?: number;
+  };
+}
+
+export interface TagParent {
+  _count?: {
+    blogs?: number;
   };
 }

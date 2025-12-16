@@ -29,4 +29,6 @@ export const resolvers = {
   User: userResolvers.User,
   Blog: blogResolvers.Blog,
   Comment: commentResolvers.Comment,
+  Category: categoryResolvers.Category,
+  Tag: categoryResolvers.Tag,
 };

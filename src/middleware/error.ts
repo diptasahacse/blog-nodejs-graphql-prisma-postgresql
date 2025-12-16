@@ -1,10 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 
+interface ZodError extends Error {
+  errors: Array<{ path: (string | number)[]; message: string }>;
+}
+
 interface ErrorWithCode extends Error {
   code?: string;
   name: string;
   issues?: Array<{ path: (string | number)[]; message: string }>;
   status?: number;
+  statusCode?: number;
+  errors?: Array<{ path: (string | number)[]; message: string }>;
 }
 
 export const errorHandler = (
@@ -34,10 +40,11 @@ export const errorHandler = (
 
   // Validation errors
   if (error.name === 'ZodError') {
+    const zodError = error as ZodError;
     res.status(400).json({
       error: 'Validation failed',
       message: 'Invalid input data',
-      details: error.errors,
+      details: zodError.errors,
     });
     return;
   }
@@ -60,7 +67,7 @@ export const errorHandler = (
   }
 
   // Default error
-  res.status(error.statusCode || 500).json({
+  res.status(error.statusCode || error.status || 500).json({
     error: error.message || 'Internal server error',
     ...(process.env.NODE_ENV === 'development' && { stack: error.stack }),
   });
