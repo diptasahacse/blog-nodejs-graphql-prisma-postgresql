@@ -1,8 +1,6 @@
 import { CategoryService, TagService } from './category.service';
 import type { GraphQLContext } from '../../graphql/resolvers';
 import type {
-  CreateCategoryInput,
-  CreateTagInput,
   CategoryArgs,
   CategoryBySlugArgs,
   CreateCategoryArgs,
